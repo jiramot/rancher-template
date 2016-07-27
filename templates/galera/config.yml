@@ -1,5 +1,5 @@
-name: MariaDB Galera <fungjai>
+name: MariaDB Galera Cluster
 description: |
-  mariadb galera
-version: 10.1
-category: Database
+    Fungjai
+version: 10.0.22-rancher1
+category: Databases
