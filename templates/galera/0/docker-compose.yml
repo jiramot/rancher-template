@@ -32,6 +32,7 @@ galera:
   labels:
     io.rancher.sidekicks: mariadb-galera-data,mariadb-galera-server,galera-leader-forwarder
     io.rancher.container.hostname_override: container_name
+    io.rancher.scheduler.global: 'true'
     io.rancher.scheduler.affinity:host_label: mariadb=yes
   volumes_from:
     - 'mariadb-galera-data'
@@ -48,4 +49,5 @@ galera-lb:
   - galera:galera
   stdin_open: true
   labels:
+    io.rancher.scheduler.global: 'true'
     io.rancher.scheduler.affinity:host_label: mariadb-lb=yes
