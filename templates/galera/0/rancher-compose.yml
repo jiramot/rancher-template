@@ -14,7 +14,8 @@ galera:
       wsrep_sst_auth=root:password
       progress=1
 galera-lb:
-  load_balancer_config: {}
+  load_balancer_config:
+    haproxy_config: {}
   health_check:
     port: 42
     interval: 2000
