@@ -9,6 +9,7 @@ mariadb-galera-server:
   labels:
     io.rancher.container.hostname_override: container_name
   entrypoint: bash -x /opt/rancher/start_galera
+
 mariadb-galera-data:
   image: rancher/galera:10.0.22-rancher2
   net: none
@@ -22,11 +23,13 @@ mariadb-galera-data:
   command: /bin/true
   labels:
     io.rancher.container.start_once: true
+
 galera-leader-forwarder:
   image: rancher/galera-leader-proxy:v0.1.0
   net: "container:galera"
   volumes_from:
-   - 'mariadb-galera-data'
+    - 'mariadb-galera-data'
+    
 galera:
   image: rancher/galera-conf:v0.2.0
   labels:
@@ -41,13 +44,13 @@ galera:
   command: /bin/bash
 
 galera-lb:
-  expose:
+  ports:
   - 3306:3307/tcp
-  tty: true
-  image: rancher/load-balancer-service
   links:
   - galera:galera
-  stdin_open: true
   labels:
     io.rancher.scheduler.global: 'true'
     io.rancher.scheduler.affinity:host_label: mariadb-lb=yes
+  tty: true
+  image: rancher/load-balancer-service
+  stdin_open: true
