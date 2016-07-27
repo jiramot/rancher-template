@@ -1,0 +1,5 @@
+name: MariaDB Galera <fungjai>
+description: |
+  mariadb galera
+version: 10.1
+category: Database
