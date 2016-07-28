@@ -1,4 +1,5 @@
 galera:
+  scale: 3
   metadata:
     mysqld: |
       innodb_file_per_table = 1

@@ -4,6 +4,7 @@ mariadb-galera-server:
   environment:
     TERM: "xterm"
     MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    MYSQL_ROOT_PASSWORD: ""
   volumes_from:
     - 'mariadb-galera-data'
   labels:
@@ -29,14 +30,12 @@ galera-leader-forwarder:
   net: "container:galera"
   volumes_from:
     - 'mariadb-galera-data'
-    
+
 galera:
   image: rancher/galera-conf:v0.2.0
   labels:
     io.rancher.sidekicks: mariadb-galera-data,mariadb-galera-server,galera-leader-forwarder
-    io.rancher.container.hostname_override: container_name
-    io.rancher.scheduler.global: 'true'
-    io.rancher.scheduler.affinity:host_label: mariadb=yes
+    io.rancher.container.hostname_override: container_name    
   volumes_from:
     - 'mariadb-galera-data'
   stdin_open: true
