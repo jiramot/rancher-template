@@ -43,10 +43,13 @@ galera:
   command: /bin/bash
 
 galera-lb:
-  port:
+  ports:
   - 3306:3307/tcp
   tty: true
   image: rancher/load-balancer-service
   links:
   - galera:galera
   stdin_open: true
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.scheduler.affinity:host_label: mariadb-lb=yes
