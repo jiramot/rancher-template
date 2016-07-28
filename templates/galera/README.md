@@ -19,8 +19,8 @@ The following settings are configured dynamically/automatically:
 
 ```
 server-id
-log-bin 
-bind-address 
+log-bin
+bind-address
 report_host
 wsrep_node_name
 wsrep_cluster_name
@@ -28,12 +28,14 @@ wsrep_cluster_name
 
 Users can specify configuration for the [mysqld] info using Rancher Metadata
 
-Configuration lines from my.cnf are directly inserted into `/etc/mysql/conf.d/001-galera.cnf`, no format change. 
+Configuration lines from my.cnf are directly inserted into `/etc/mysql/conf.d/001-galera.cnf`, no format change.
 
 Defaults:
 
 ```
 mysqld: |
+ max_allowed_packet = 32M
+ sql_mode = "STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"  
  innodb_file_per_table = 1
  innodb_autoinc_lock_mode=2
  query_cache_size=0
@@ -59,6 +61,3 @@ See [Galera documentation](http://galeracluster.com/documentation-webpages/quoru
 
 * Create an Rsync Sidekick for data level transfers. Using mysqldump at the moment which is not the fastest and has some drawbacks when adding new nodes.
 * Add CMON?
-
-
-
