@@ -1,0 +1,16 @@
+redis:
+  image: jiramot/redis
+  net: "container:redis"
+  labels:
+    io.rancher.container.hostname_override: container_name
+
+redis-lb:
+  ports:
+  - 6379:7000/tcp
+  tty: true
+  image: rancher/load-balancer-service
+  links:
+  - redis:redis
+  stdin_open: true
+  labels:
+    io.rancher.scheduler.global: 'true'

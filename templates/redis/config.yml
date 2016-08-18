@@ -1,0 +1,5 @@
+name: Redis cluster
+description: |
+    Fungjai
+version: compile
+category: Databases
