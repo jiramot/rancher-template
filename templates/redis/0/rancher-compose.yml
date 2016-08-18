@@ -3,8 +3,10 @@
   version: fungjai-v0
   description: |
     Redis cluster
+
 redis:
   scale: 6
+  
 redis-lb:
   load_balancer_config:
     haproxy_config: {}

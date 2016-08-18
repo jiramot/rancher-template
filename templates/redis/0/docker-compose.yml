@@ -1,8 +1,10 @@
 redis:
   image: jiramot/redis
-  net: "container:redis"
   labels:
+    io.rancher.container.pull_image: always
     io.rancher.container.hostname_override: container_name
+  stdin_open: true
+  tty: true
 
 redis-lb:
   ports:
